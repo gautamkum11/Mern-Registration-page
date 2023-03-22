@@ -140,6 +140,10 @@ button {
     margin-top: 10px;
 }
 
+button:hover {
+    background-color: aquamarine;
+}
+
 textarea {
     resize: none;
     display: flex;
@@ -163,6 +167,6 @@ p,h1,h2,h3 {
     margin-top: 80px;
     border-radius: 10px;
     border-radius: 2px solid black;
-    height: 450px;
+    height: 490px;
     background-color: white;
 }

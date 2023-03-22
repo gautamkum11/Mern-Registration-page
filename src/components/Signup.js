@@ -6,7 +6,8 @@ function Signup() {
     const [user, setuser] = useState({
         name : "",
         email : "",
-        phone : ""
+        phone : "",
+        date : ""
     });
 
     let name,value;
@@ -18,12 +19,12 @@ function Signup() {
 
    const handleclick = async(event) => {
        event.preventDefault();
-        const {name , email, phone} = user;
-        if(name && email && phone)
+        const {name , email, phone,date} = user;
+        if(name && email && phone && date)
         {
             try{
                 await axios.post("http://localhost:5000/register", {
-                    name,email,phone
+                    name,email,phone,date
                 })
                 .then(res => {
                     console.log(res.data);
@@ -43,11 +44,11 @@ function Signup() {
         <div className="gautam">
             <nav className="navbar">
                 <div className="navbar-1">
-                    <h3 className="gk1">AirPool.in</h3>
+                    <h3 className="gk1">KnockOnce</h3>
                 </div>
             </nav>
             <div className="home">
-                <h1>Sign Up</h1>
+                <h1>Appointment Form</h1>
                 <form method = "POST" style={{marginTop: "10px", paddingTop: "10px"}}>
                     <div className = "home-1">
                         <div style={{padding: "10px, 10px 5px 10px"}}>
@@ -61,6 +62,10 @@ function Signup() {
                         <div style={{padding: "10px, 10px 5px 10px"}}>
                             <p><b>Contact No.</b></p>
                             <input type="text" placeholder="Enter Contact No." value = {user.phone} name = "phone"  onChange = {handlechange} />
+                        </div>
+                        <div style={{padding: "10px, 10px 5px 10px"}}>
+                            <p><b>Appointment Date</b></p>
+                            <input type="date" placeholder="Enter Appointment date" value = {user.date} name = "date"  onChange = {handlechange} />
                         </div>
                         <button type="submit" onClick = {handleclick}><b>Register</b></button>
                     </div>

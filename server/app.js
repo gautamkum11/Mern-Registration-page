@@ -30,15 +30,19 @@ const userSchema = new mongoose.Schema({
     phone : {
         type : Number,
         required : true
+    },
+    date : {
+        type : "Date",
+        required : true
     }
 });
 
 const User = mongoose.model("User", userSchema);
 
 app.post("/register", async (req,res) => {
-    const {name, email ,phone} = req.body;
+    const {name, email ,phone,date} = req.body;
 
-    if(!name || !email || !phone)
+    if(!name || !email || !phone || !date)
     {
         return res.status(422).json({error: "plz fill all the fields"});
     }
@@ -49,7 +53,7 @@ app.post("/register", async (req,res) => {
         {
             return res.status(422).json({error: "Email already exists"});
         }
-        const user =  new User({name, email ,phone});
+        const user =  new User({name, email ,phone,date});
         const userregister = await user.save();
         if(userregister)
         {
